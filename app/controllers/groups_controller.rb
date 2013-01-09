@@ -35,6 +35,7 @@ class GroupsController < ApplicationController
   # GET /groups/1/edit
   def edit
     @group = Group.find(params[:id])
+    @tasks = Task.all
   end
 
   # POST /groups
@@ -57,6 +58,7 @@ class GroupsController < ApplicationController
   # PUT /groups/1.json
   def update
     @group = Group.find(params[:id])
+    #raise params.inspect
 
     respond_to do |format|
       if @group.update_attributes(params[:group])
