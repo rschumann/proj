@@ -35,6 +35,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    @tasks = Task.where(user_id:[@user, nil])
   end
 
   # POST /users
@@ -57,9 +58,13 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
+    @user.title = params[:user][:title]
+    @user.description = params[:user][:description]
+    @tasks = Task.find(params[:tasks_ids])
+    @user.tasks = @tasks
 
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if @user.save
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else

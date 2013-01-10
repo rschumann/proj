@@ -12,10 +12,11 @@
 
 <p>
   <b>Tasks:</b>
+<ul id="sortable">
   <% @user.tasks.each do |task| %>
-    <%= task.title %>
-    <p>Description: <%= task.description %></p>
+      <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><%= task.title %></li>
   <% end %>
+</ul>
 </p>
 
 
