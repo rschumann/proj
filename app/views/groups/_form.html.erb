@@ -22,14 +22,16 @@
 
   <div class="field">
       <%= f.label :tasks %><br />
+
       <ul>
       <% @tasks.each do |task| %>
+
 
           <li>
             <!--<%= check_box_tag 'group[tasks_ids][]', task.id, false, id: "group_tasks_ids_#{task.id}" %>-->
             <!--<%= f.label "tasks_ids_#{task.id}", task.title %>-->
 
-            <%= check_box_tag 'tasks_ids[]', task.id, false, id: "group_tasks_ids_#{task.id}" %>
+            <%= check_box_tag 'tasks_ids[]', task.id, (task.group_id == @group.id) , id: "group_tasks_ids_#{task.id}" %>
             <%=f.label "tasks_ids_#{task.id}", task.title %>
           </li>
       <% end %>
@@ -39,6 +41,7 @@
 
   <div class="actions">
     <%= f.submit %>
+
 
   </div>
 <% end %>

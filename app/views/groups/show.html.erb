@@ -12,10 +12,11 @@
 
 <p>
   <b>Tasks:</b>
+  <ul>
   <% @group.tasks.each do |task| %>
-      <%= task.title %>
-    <p>Description: <%= task.description %></p>
+    <li><%= task.title %>
   <% end %>
+  </ul>
 </p>
 
 
