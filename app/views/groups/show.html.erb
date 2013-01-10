@@ -12,9 +12,9 @@
 
 <p>
   <b>Tasks:</b>
-  <ul>
+  <ul id="sortable">
   <% @group.tasks.each do |task| %>
-    <li><%= task.title %>
+    <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><%= task.title %></li>
   <% end %>
   </ul>
 </p>
