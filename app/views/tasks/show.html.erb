@@ -20,6 +20,14 @@
   <%= @task.group_id %>
 </p>
 
+<h3>Comments</h3>
 
+<ul id="comments">
+  <% @comments.each do |comment| %>
+      <li><%= comment.content %></li>
+  <% end %>
+</ul>
+
+<%=  link_to 'Comment',task_comments_path(@task)  %>
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>

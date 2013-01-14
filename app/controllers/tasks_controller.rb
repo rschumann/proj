@@ -3,6 +3,7 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     @tasks = Task.all
+    @comments = Comment.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +15,7 @@ class TasksController < ApplicationController
   # GET /tasks/1.json
   def show
     @task = Task.find(params[:id])
-
+    @comments = Task.find(params[:id]).comments
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @task }

@@ -4,7 +4,6 @@ class GroupsController < ApplicationController
   # GET /groups.json
   def index
     @groups = Group.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @groups }
@@ -14,7 +13,11 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
+    @comments = Group.find(params[:id]).comments
 
+
+
+    @task = Task.first
     @tasks = []
     find_group.tasks_orders.each do |f|
       @tasks << f.task
@@ -33,7 +36,6 @@ class GroupsController < ApplicationController
   # GET /groups/new.json
   def new
     @group = Group.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @group }
@@ -97,4 +99,6 @@ class GroupsController < ApplicationController
   def find_group
     @group = Group.find(params[:id])
   end
+
+
 end

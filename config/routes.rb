@@ -10,6 +10,16 @@ Project::Application.routes.draw do
 
   resources :groups
 
+  resources :comments
+
+  resources :groups do
+    resources :comments
+  end
+
+  resources :tasks do
+    resources :comments
+  end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
