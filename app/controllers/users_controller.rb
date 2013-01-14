@@ -60,7 +60,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.title = params[:user][:title]
     @user.description = params[:user][:description]
-    @tasks = Task.find(params[:tasks_ids])
+    @tasks = Task.find_all_by_id(params[:tasks_ids])
     @user.tasks = @tasks
 
     respond_to do |format|

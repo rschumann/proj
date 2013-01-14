@@ -24,16 +24,13 @@
       <%= f.label :tasks %><br />
 
       <ul>
+      <%if @tasks %>
       <% @tasks.each do |task| %>
-
-
           <li>
-            <!--<%= check_box_tag 'group[tasks_ids][]', task.id, false, id: "group_tasks_ids_#{task.id}" %>-->
-            <!--<%= f.label "tasks_ids_#{task.id}", task.title %>-->
-
             <%= check_box_tag 'tasks_ids[]', task.id, (task.group_id == @group.id) , id: "group_tasks_ids_#{task.id}" %>
             <%=f.label "tasks_ids_#{task.id}", task.title %>
           </li>
+      <% end %>
       <% end %>
       </ul>
   </div>

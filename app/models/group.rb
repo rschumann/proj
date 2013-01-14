@@ -1,5 +1,5 @@
 class Group < ActiveRecord::Base
   has_many :tasks
-  has_many :group_tasks_orderses
+  has_many :tasks_orders,  :dependent => :nullify
   attr_accessible :description, :title
 end

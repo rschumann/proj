@@ -1,5 +1,5 @@
 Project::Application.routes.draw do
-  resources :group_tasks_orders
+  resources :tasks_orders
 
 
   resources :tasks

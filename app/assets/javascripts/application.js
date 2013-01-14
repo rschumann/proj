@@ -14,7 +14,9 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require_tree .
-$(function() {
-    $( "#sortable" ).sortable();
-    $( "#sortable" ).disableSelection();
-});
+//$(function() {
+//    $( "#sortable" ).sortable();
+//    $( "#sortable" ).disableSelection();
+//});
+
+

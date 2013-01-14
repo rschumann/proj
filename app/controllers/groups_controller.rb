@@ -14,6 +14,15 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
+
+    @tasks = []
+    find_group.tasks_orders.each do |f|
+      @tasks << f.task
+    end
+    @tasks
+
+    #raise @tasks.inspect
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @group }
@@ -58,7 +67,7 @@ class GroupsController < ApplicationController
     #raise params.inspect
     @group.title = params[:group][:title]
     @group.description = params[:group][:description]
-    @tasks = Task.find(params[:tasks_ids])
+    @tasks = Task.find_all_by_id(params[:tasks_ids])
     @group.tasks = @tasks
 
     respond_to do |format|
