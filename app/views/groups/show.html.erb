@@ -15,7 +15,7 @@
   <%= hidden_field_tag :group_id, '', value: @group.id  %>
   <% if @tasks != [] %>
     <ul id="sortable">
-      <% @tasks.each do |task| %>
+      <% @group.tasks.each do |task| %>
           <li id="tasks_<%= task.id %>"  class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><%= task.title %></li>
       <% end %>
     </ul>

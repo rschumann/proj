@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
   has_many :tasks
-  has_many :tasks_orders,  :dependent => :nullify
+  has_many :orders,  :dependent => :nullify
   attr_accessible :description, :title
 end

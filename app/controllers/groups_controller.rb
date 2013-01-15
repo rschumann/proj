@@ -15,16 +15,11 @@ class GroupsController < ApplicationController
   def show
     @comments = Group.find(params[:id]).comments
 
-
-
-    @task = Task.first
     @tasks = []
-    find_group.tasks_orders.each do |f|
+    find_group.orders.each do |f|
       @tasks << f.task
     end
     @tasks
-
-    #raise @tasks.inspect
 
     respond_to do |format|
       format.html # show.html.erb
@@ -71,6 +66,14 @@ class GroupsController < ApplicationController
     @group.description = params[:group][:description]
     @tasks = Task.find_all_by_id(params[:tasks_ids])
     @group.tasks = @tasks
+
+    Order.where(:group_id => @group.id ).each do |g|
+      g.update_attributes(:group_id => nil)
+    end
+    Order.find_all_by_task_id(@tasks).each do |g|
+        g.update_attributes(:group_id => @group.id)
+    end
+
 
     respond_to do |format|
       if @group.save

@@ -1,4 +1,4 @@
-class TasksOrder < ActiveRecord::Base
+class Order < ActiveRecord::Base
   belongs_to :group
   belongs_to :user
   belongs_to :task

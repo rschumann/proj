@@ -45,7 +45,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        TasksOrder.new(:group_id => @task.group_id, :task_id => @task.id).save
+        Order.new(:group_id => @task.group_id, :task_id => @task.id).save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
         format.json { render json: @task, status: :created, location: @task }
       else
@@ -64,7 +64,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        #TasksOrder.update_attributes(:group_id => @task.group_id, :task_id => @task.id)
+
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }
         format.json { head :no_content }
       else
