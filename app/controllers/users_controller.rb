@@ -15,6 +15,14 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
+    @tasks = []
+    @user.orders.each do |f|
+      @tasks << f.task
+    end
+    @tasks
+
+
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -62,6 +70,12 @@ class UsersController < ApplicationController
     @user.description = params[:user][:description]
     @tasks = Task.find_all_by_id(params[:tasks_ids])
     @user.tasks = @tasks
+
+    Order.destroy_all(:user_id => @user.id )
+
+    @tasks.each do |task|
+      Order.create(:user_id => @user.id, :task_id => task.id)
+    end
 
     respond_to do |format|
       if @user.save

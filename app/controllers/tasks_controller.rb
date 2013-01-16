@@ -41,18 +41,34 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
+    new_order = lambda {|g,t,u| Order.create(:group_id => g, :task_id => t, :user_id => u)}
     @task = Task.new(params[:task])
 
     respond_to do |format|
-      if @task.save
-        Order.new(:group_id => @task.group_id, :task_id => @task.id).save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render json: @task, status: :created, location: @task }
-      else
+
+
+    if @task.save
+      if (@task.group_id && @task.user_id)
+        new_order.call(@task.group_id, @task.id, nil)
+        new_order.call(nil, @task.id, @task.user_id)
+      elsif  @task.group_id
+        new_order.call(@task.group_id, @task.id, nil)
+      elsif @task.user_id
+        new_order.call(nil, @task.id, @task.user_id)
+      end
+      format.html { redirect_to @task, notice: 'Task was successfully created.' }
+      format.json { render json: @task, status: :created, location: @task }
+    else
         format.html { render action: "new" }
         format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
     end
+  end
+
+
+
+
+
+
   end
 
   # PUT /tasks/1

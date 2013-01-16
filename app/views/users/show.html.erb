@@ -12,9 +12,10 @@
 
 <p>
   <b>Tasks:</b>
+  <%= hidden_field_tag :user_id, '', value: @user.id  %>
 <ul id="sortable">
-  <% @user.tasks.each do |task| %>
-      <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><%= task.title %></li>
+  <% @tasks.each do |task| %>
+      <li id="tasks_<%= task.id %>" class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><%= task.title %></li>
   <% end %>
 </ul>
 </p>
@@ -22,3 +23,23 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+<script>
+    $(function() {
+        $("#sortable").sortable({
+            update: function(event, ui) {
+
+                var str = $(this).sortable('serialize');
+                if ($('#user_id').val()) {
+                    str = str + "&user_id=" + $('#user_id').val();
+                }
+
+                $.ajax({
+                    url: '<%= tasks_orders_path %>',
+                    data: str
+
+                });
+            }
+        })
+    });
+</script>

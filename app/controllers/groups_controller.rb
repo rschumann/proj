@@ -67,12 +67,18 @@ class GroupsController < ApplicationController
     @tasks = Task.find_all_by_id(params[:tasks_ids])
     @group.tasks = @tasks
 
-    Order.where(:group_id => @group.id ).each do |g|
-      g.update_attributes(:group_id => nil)
+
+    Order.destroy_all(:group_id => @group.id )
+    #Order.where(:task_id => @tasks, :user_id => nil).each do |g|
+    #    g.update_attributes(:group_id => @group.id)
+    #end
+
+
+    @tasks.each do |task|
+      Order.create(:group_id => @group.id, :task_id => task.id)
     end
-    Order.find_all_by_task_id(@tasks).each do |g|
-        g.update_attributes(:group_id => @group.id)
-    end
+
+
 
 
     respond_to do |format|
