@@ -62,27 +62,17 @@ class GroupsController < ApplicationController
   # PUT /groups/1.json
   def update
     #raise params.inspect
-    @group.title = params[:group][:title]
-    @group.description = params[:group][:description]
     @tasks = Task.find_all_by_id(params[:tasks_ids])
     @group.tasks = @tasks
 
-
     Order.destroy_all(:group_id => @group.id )
-    #Order.where(:task_id => @tasks, :user_id => nil).each do |g|
-    #    g.update_attributes(:group_id => @group.id)
-    #end
-
 
     @tasks.each do |task|
       Order.create(:group_id => @group.id, :task_id => task.id)
     end
 
-
-
-
     respond_to do |format|
-      if @group.save
+      if @group.update_attributes(params[:group])
         format.html { redirect_to @group, notice: 'Group was successfully updated.' }
         format.json { head :no_content }
       else

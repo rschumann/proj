@@ -19,6 +19,9 @@ Project::Application.routes.draw do
   resources :tasks do
     resources :comments
   end
+  resources :users do
+    resources :avatar
+  end
 
 
   # The priority is based upon order of creation:
