@@ -50,6 +50,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
+    @user.save
 
     respond_to do |format|
       if @user.save
@@ -97,5 +98,14 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
+  end
+
+  def delete_asset
+    @user = User.find(params[:user_id])
+    asset = @user.attached_assets.find(params[:id])
+    asset.asset.clear
+    asset.destroy
+    @user.save
+    redirect_to :back
   end
 end

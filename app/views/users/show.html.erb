@@ -28,7 +28,9 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
-
+<% @user.attached_assets.each do |a| %>
+    <%= image_tag(a.asset.url(:normal)) %>
+<% end %>
 <script>
     $(function() {
         $("#sortable").sortable({

@@ -4,3 +4,7 @@
 
 <%= link_to 'Show', @user %> |
 <%= link_to 'Back', users_path %>
+<% @user.attached_assets.each do |a| %>
+    <%= image_tag(a.asset.url(:mini)) %>
+    <%= link_to "Удалить", user_delete_asset_path(user_id: a.attachable_id, id: a.id) %>
+<% end %>

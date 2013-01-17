@@ -23,6 +23,10 @@ Project::Application.routes.draw do
     resources :avatar
   end
 
+  resources :users do
+    get 'delete_asset' => "users#delete_asset"
+  end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
