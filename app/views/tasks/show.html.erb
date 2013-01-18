@@ -12,12 +12,12 @@
 
 <p>
   <b>User:</b>
-  <%= User.find_by_id(@task.user_id).title %>
+  <%= @user_title %>
 </p>
 
 <p>
   <b>Group:</b>
-  <%= Group.find_by_id(@task.group_id).title %>
+  <%= @group_title %>
 </p>
 
 <h3>Comments</h3>

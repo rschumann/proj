@@ -21,11 +21,13 @@
   </div>
   <div class="field">
     <%= f.label :user_id %><span>: </span>
-    <%= f.select :user_id, User.all.map{|map| [map.title, map.id] } %>
+    <%- users = [['Select user', nil]] + User.all.map{|map| [map.title, map.id]} %>
+    <%= f.select( :user_id, options_for_select(users)) %>
   </div>
   <div class="field">
     <%= f.label :group_id %><span>: </span>
-    <%= f.select :group_id, Group.all.map{|map| [map.title, map.id] } %>
+    <%- groups = [['Select group', nil]] + Group.all.map{|map| [map.title, map.id]} %>
+    <%= f.select( :group_id, options_for_select(groups) )  %>
   </div>
   <div class="actions">
     <%= f.submit %>

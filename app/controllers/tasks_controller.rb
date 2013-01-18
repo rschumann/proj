@@ -5,6 +5,8 @@ class TasksController < ApplicationController
     @tasks = Task.all
     @comments = Comment.all
 
+
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tasks }
@@ -16,6 +18,13 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     @comments = Task.find(params[:id]).comments
+    if User.find_by_id(@task.user_id)
+      @user_title = User.find_by_id(@task.user_id).title
+    end
+    if Group.find_by_id(@task.group_id)
+      @group_title = Group.find_by_id(@task.group_id).title
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @task }
@@ -26,6 +35,8 @@ class TasksController < ApplicationController
   # GET /tasks/new.json
   def new
     @task = Task.new
+    #@user = User.select(:title)
+    #raise User.select(:title).inspect
 
     respond_to do |format|
       format.html # new.html.erb
