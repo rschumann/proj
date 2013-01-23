@@ -28,9 +28,26 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
-<% @user.attached_assets.each do |a| %>
-    <%= image_tag(a.asset.url(:normal)) %>
-<% end %>
+
+<div id="slider1">
+  <a class="buttons prev" href="#">left</a>
+  <div class="viewport">
+    <ul class="overview">
+        <% @user.attached_assets.each do |a| %>
+           <li> <%= image_tag(a.asset.url(:mini)) %> </li>
+        <% end %>
+    </ul>
+  </div>
+  <a class="buttons next" href="#">right</a>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#slider1').tinycarousel({ display: 3 });
+    });
+</script>
+
+
 <script>
     $(function() {
         $("#sortable").sortable({
