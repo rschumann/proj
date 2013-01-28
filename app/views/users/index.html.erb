@@ -1,5 +1,13 @@
 <h1>Listing users</h1>
 
+<% if current_user %>
+    <%= link_to 'Log Out', destroy_user_session_path, :method => :delete%>
+<% else %>
+    <%=link_to 'Войти', new_user_session_path%> &nbsp;
+    <%=link_to 'Регистрация', new_user_registration_path %><br>
+<% end %>
+<br><br>
+
 <table>
   <tr>
     <th>Title</th>
@@ -11,6 +19,7 @@
 
 <% @users.each do |user| %>
   <tr>
+    <td><%= user.email %></td>
     <td><%= user.title %></td>
     <td><%= user.description %></td>
     <td><%= link_to 'Show', user %></td>

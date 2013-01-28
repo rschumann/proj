@@ -8,6 +8,7 @@ gem 'rails', '3.2.9'
 gem 'mysql2'
 gem 'pry'
 gem "paperclip", "~> 3.0"
+gem 'devise'
 
 
 # Gems used only for assets and not required

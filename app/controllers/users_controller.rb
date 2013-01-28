@@ -21,8 +21,6 @@ class UsersController < ApplicationController
     end
     @tasks
 
-
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -50,7 +48,6 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-    @user.save
 
     respond_to do |format|
       if @user.save
