@@ -2,15 +2,13 @@ Project::Application.routes.draw do
 
   devise_for :users
 
-
   resources :tasks_orders
-
 
   resources :tasks
 
-
   resources :users
 
+  resources :welcom
 
   resources :groups
 
@@ -30,11 +28,12 @@ Project::Application.routes.draw do
   resources :users do
     get 'delete_asset' => "users#delete_asset"
   end
+  #
+  #devise_scope :user do
+  #  get "/" => "devise/sessions#new"
+  #end
 
-  devise_scope :user do
-    get "/" => "devise/sessions#new"
-  end
-
+  root :to => 'welcom#index'
 
 
   # The priority is based upon order of creation:

@@ -1,0 +1,39 @@
+<% if current_user %>
+    <div id="user" class="sing">
+      <%= @user.email %>
+      <%= link_to 'Log Out', destroy_user_session_path, :method => :delete%>
+    </div>
+    <div id="tasks">
+      <h1>Listing tasks</h1>
+
+      <table>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>User</th>
+          <th>Group</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+
+        <% @tasks.each do |task| %>
+            <tr>
+              <td><%= task.title %></td>
+              <td><%= task.description %></td>
+              <td><%= task.user_id %></td>
+              <td><%= task.group_id %></td>
+              <td><%= link_to 'Show', task %></td>
+              <td><%= link_to 'Edit', edit_task_path(task) %></td>
+              <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+        <% end %>
+      </table>
+
+    </div>
+<% else %>
+    <div id="sing" class="sing">
+      <%=link_to 'Войти', new_user_session_path%> &nbsp;
+      <%=link_to 'Регистрация', new_user_registration_path %><br>
+    </div>
+<% end %>
