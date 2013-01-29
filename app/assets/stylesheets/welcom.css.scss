@@ -4,3 +4,23 @@
 .sing {
   float: right;
 }
+body {
+  background-image: url("background.png");
+  color: #ffffff;
+  }
+
+//a, #tasks table tr td a {
+//  color: #ffa07a;
+//}
+
+
+a {
+  color: #ffa07a;
+  &:visited {
+    color: #ffa07a;
+  }
+  &:hover {
+    color: black;
+    background-color: #ffffff;
+  }
+}
