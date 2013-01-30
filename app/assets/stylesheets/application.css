@@ -10,5 +10,6 @@
  *
  *= require_self
  *= require website
+ *= require reveal
  *= require_tree .
  */
