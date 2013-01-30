@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require jquery-1.4.4.min
 //= require jquery.reveal
 //= require_tree .
 
