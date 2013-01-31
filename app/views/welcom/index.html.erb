@@ -18,14 +18,14 @@
         </tr>
 
         <% @tasks.each do |task| %>
-            <tr>
-              <td> <a href="#" class="big-link" data-reveal-id="tasks_<%= task.id %>" data-animation="fade"> <%= task.title %> </a> </td>
+            <tr id="task_<%= task.id %>">
+              <td><%= link_to task.title, task_path(task), remote: true %> </td>
               <td><%= task.description %></td>
               <td><%= task.user_id %></td>
               <td><%= task.group_id %></td>
               <td><%= link_to 'Show', task %></td>
               <td><%= link_to 'Edit', edit_task_path(task) %></td>
-              <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Destroy', task, method: :delete,  confirm: 'Are you sure?', remote: true %></td>
             </tr>
         <% end %>
       </table>
@@ -38,14 +38,3 @@
     </div>
 <% end %>
 
-<% @tasks.each do |task| %>
-    <div id="tasks_<%= task.id %>" class="reveal-modal">
-      <h3>Comment list</h3>
-      <ul id="comments">
-        <% Comment.find_all_by_commentable_id(task.id).each do |comment| %>
-            <li><%= comment.content %></li>
-        <% end %>
-      </ul>
-      <a class="close-reveal-modal">&#215;</a>
-    </div>
-<% end %>
