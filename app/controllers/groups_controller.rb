@@ -22,7 +22,7 @@ class GroupsController < ApplicationController
     @tasks
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # index2.html.erb
       format.json { render json: @group }
     end
   end

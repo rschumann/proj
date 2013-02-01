@@ -8,8 +8,6 @@ Project::Application.routes.draw do
 
   resources :users
 
-  resources :welcom
-
   resources :groups
 
   resources :comments

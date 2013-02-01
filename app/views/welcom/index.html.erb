@@ -6,20 +6,21 @@
     <div id="tasks">
       <h1>Listing tasks</h1>
 
-      <table>
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>User</th>
-          <th>Group</th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-
+      <table id="tasks_table">
+        <thead>
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>User</th>
+              <th>Group</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+        </thead>
         <% @tasks.each do |task| %>
             <tr id="task_<%= task.id %>">
-              <td><%= link_to task.title, task_path(task), remote: true %> </td>
+              <td class="title"><%= link_to task.title, task_path(task), remote: true %> </td>
               <td><%= task.description %></td>
               <td><%= task.user_id %></td>
               <td><%= task.group_id %></td>
@@ -27,6 +28,9 @@
               <td><%= link_to 'Edit', edit_task_path(task) %></td>
               <td><%= link_to 'Destroy', task, method: :delete,  confirm: 'Are you sure?', remote: true %></td>
             </tr>
+            <script>
+
+            </script>
         <% end %>
       </table>
 
@@ -37,4 +41,5 @@
       <%=link_to 'Регистрация', new_user_registration_path %><br>
     </div>
 <% end %>
+
 

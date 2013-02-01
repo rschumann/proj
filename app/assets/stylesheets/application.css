@@ -11,5 +11,6 @@
  *= require_self
  *= require website
  *= require reveal
+ *= require jquery.qtip
  *= require_tree .
  */

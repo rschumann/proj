@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
 
-  before_filter :find_task, except: [:index, :new]
+  before_filter :find_task, :only => [:show, :edit, :update, :destroy]
 
   def index
     @tasks = Task.all
@@ -13,7 +13,7 @@ class TasksController < ApplicationController
     @group_title = @task.group.title if @task.group
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { render :comments, layout: request.xhr?.nil? } # index2.html.erb
       format.js
     end
   end

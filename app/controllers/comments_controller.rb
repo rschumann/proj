@@ -26,5 +26,4 @@ class CommentsController < ApplicationController
     nil
   end
 
-
 end

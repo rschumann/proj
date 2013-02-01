@@ -14,6 +14,7 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery.reveal
+//= require jquery.qtip-1.0.0-rc3
 //= require_tree .
 
 
