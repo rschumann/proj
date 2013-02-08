@@ -13,7 +13,7 @@ class TasksController < ApplicationController
     @group_title = @task.group.title if @task.group
 
     respond_to do |format|
-      format.html { render :comments, layout: request.xhr?.nil? } # index2.html.erb
+      format.html { render :show } # index2.html.erb
       format.js
     end
   end

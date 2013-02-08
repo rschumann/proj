@@ -2,6 +2,6 @@
 
 <ul id="comments">
   <% @comments.each do |comment| %>
-      <li><%= comment.content %></li>
+      <li><%= comment.content.html_safe %></li>
   <% end %>
 </ul>

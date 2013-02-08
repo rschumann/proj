@@ -13,3 +13,4 @@ class AddAttachmentAvatarToUsers < ActiveRecord::Migration
     remove_column :users, :avatar_updated_at
   end
 end
+                                        z
